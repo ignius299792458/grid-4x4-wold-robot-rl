@@ -18,6 +18,18 @@
       },
       "justMyCode": false,
       "console": "internalConsole"
+    },
+    {
+      "name": "Python: Pygame Auto-Reload",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_dev.py",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/src"
+      },
+      "console": "internalConsole",
+      "justMyCode": false
     }
   ]
 }
