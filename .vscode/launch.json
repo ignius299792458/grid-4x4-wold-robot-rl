@@ -1,0 +1,23 @@
+{
+  "configurations": [
+    {
+      "name": "Python Debugger: Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "(grid_4x4_robot)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "grid_4x4_robot.main",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/src"
+      },
+      "justMyCode": false,
+      "console": "internalConsole"
+    }
+  ]
+}
