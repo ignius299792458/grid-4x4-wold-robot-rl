@@ -17,12 +17,15 @@ class Robot:
     def move(self, dx, dy):
         """Move robot by (dx, dy) while remaining strictly within board boundaries."""
         print(f"current position: grid_x: {self.grid_x}, grid_y: {self.grid_y}")
-        # print(f"grid_x : max(0, min({GRID_SIZE - 1}, {self.grid_x + dx}))")
+
+        # print(f"grid_x : max(0, min({GRID_SIZE - 1}, {self.grid_x + dx}))") # reverse
+
         # print(f"grid_x : min({GRID_SIZE - 1}, max(0, {self.grid_x + dx}))")
         self.grid_x = min(GRID_SIZE - 1, max(0, self.grid_x + dx))
 
-        # print(f"grid_y : max(0, min({GRID_SIZE - 1}, {self.grid_y + dx}))")
-        # print(f"grid_x : min({GRID_SIZE - 1}, max(0, {self.grid_y + dy}))")
+        # print(f"grid_y : max(0, min({GRID_SIZE - 1}, {self.grid_y + dx}))") # reverse
+
+        # print(f"grid_y : min({GRID_SIZE - 1}, max(0, {self.grid_y + dy}))")
         self.grid_y = min(GRID_SIZE - 1, max(0, self.grid_y + dy))
         print(f"next position: grid_x: {self.grid_x}, grid_y: {self.grid_y}\n")
 
