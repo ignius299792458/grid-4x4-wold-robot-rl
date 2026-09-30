@@ -1,6 +1,7 @@
 import pygame
 
 from grid_4x4_robot.config import BG_COLOR, WINDOW_SIZE
+from grid_4x4_robot.events import handle_events
 from grid_4x4_robot.grid import draw_grid
 from grid_4x4_robot.robot import Robot
 
@@ -13,14 +14,6 @@ def create_window():
     pygame.display.set_caption("4x4 Grid World and Robot")
 
     return screen, pygame.time.Clock()
-
-
-def handle_events():
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            return False
-
-    return True
 
 
 def update():
@@ -42,7 +35,7 @@ def main():
 
     running = True
     while running:
-        running = handle_events()
+        running = handle_events(robot=robot)
 
         update()
 
