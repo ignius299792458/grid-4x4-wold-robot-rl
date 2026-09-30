@@ -4,5 +4,8 @@ CELL_SIZE = WINDOW_SIZE // GRID_SIZE
 
 # Colors (RGB)
 BG_COLOR = (245, 245, 245)
-GRID_LINE_COLOR = (99, 99, 99)
-ROBOT_COLOR = (41, 128, 185)  # Soft Blue
+GRID_LINE_COLOR = (180, 180, 180)
+
+# Robot palette
+ROBOT_HEAD_COLOR = (52, 152, 219)  # Light blue
+ROBOT_BODY_COLOR = (41, 128, 185)  # Dark blue
