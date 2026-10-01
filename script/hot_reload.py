@@ -24,7 +24,7 @@ if str(SRC_DIR) not in sys.path:
 jurigged.watch(str(SRC_DIR))
 
 
-from grid_nxn_world.paint import main
+from grid_nxn_world.__main__ import main
 
 if __name__ == "__main__":
     print("🔥 Hot reload enabled")
