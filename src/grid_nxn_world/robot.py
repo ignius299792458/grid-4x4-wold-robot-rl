@@ -1,80 +1,122 @@
 import pygame
 
 from grid_nxn_world.config import (
-    CELL_SIZE,
-    GRID_SIZE,
+    ROBOT_ANIMATION_SPEED,
     ROBOT_BODY_COLOR,
     ROBOT_HEAD_COLOR,
 )
 
 
 class Robot:
-    def __init__(self, grid_x=0, grid_y=0):
-        # Logical grid coordinates (0 to 3)
+    def __init__(
+        self,
+        grid_size: int,
+        cell_size: int,
+        grid_x: int = 0,
+        grid_y: int = 0,
+    ):
+        self._grid_size = grid_size
+        self._cell_size = cell_size
+        self._speed = ROBOT_ANIMATION_SPEED
+
         self.grid_x = grid_x
         self.grid_y = grid_y
 
-        # Visual pixel coordinates (initialized to starting cell center)
-        self.pixel_x = float(grid_x * CELL_SIZE + CELL_SIZE // 2)
-        self.pixel_y = float(grid_y * CELL_SIZE + CELL_SIZE // 2)
+        pixel_x, pixel_y = self._grid_to_pixel(grid_x, grid_y)
 
-        # Animation speed factor (0.2 means 20% of remaining distance per frame)
-        self.speed = 0.25
+        self.pixel_x = float(pixel_x)
+        self.pixel_y = float(pixel_y)
 
     @property
     def position(self) -> tuple[int, int]:
-        """Return the current logical grid coordinates as (x,y)"""
-        return (self.grid_x, self.grid_y)
+        return self.grid_x, self.grid_y
 
-    def reset(self, grid_x: int = 0, grid_y: int = 0):
-        """Reset logical and visual position to specified grid coordinates"""
-        self.grid_x = max(0, min(GRID_SIZE - 1, grid_x))
-        self.grid_y = max(0, min(GRID_SIZE - 1, grid_y))
+    def set_position(
+        self,
+        grid_x: int,
+        grid_y: int,
+        *,
+        animate: bool = False,
+    ) -> None:
+        self.grid_x = self._clamp(grid_x)
+        self.grid_y = self._clamp(grid_y)
 
-        # Instantly sync visual pixel position to target cell center
-        target_x, target_y = self._grid_to_pixel(self.grid_x, self.grid_y)
-        self.pixel_x = float(target_x)
-        self.pixel_y = float(target_y)
+        if not animate:
+            pixel_x, pixel_y = self._grid_to_pixel(
+                self.grid_x,
+                self.grid_y,
+            )
 
-    def move(self, dx, dy):
-        """Update logical grid target coordinates."""
-        self.grid_x = max(0, min(GRID_SIZE - 1, self.grid_x + dx))
-        self.grid_y = max(0, min(GRID_SIZE - 1, self.grid_y + dy))
+            self.pixel_x = float(pixel_x)
+            self.pixel_y = float(pixel_y)
 
-    def update(self):
-        """Smoothly slide visual position toward the current target grid cell."""
-        target_x = self.grid_x * CELL_SIZE + CELL_SIZE // 2
-        target_y = self.grid_y * CELL_SIZE + CELL_SIZE // 2
+    def move(self, dx: int, dy: int) -> None:
+        self.grid_x = self._clamp(self.grid_x + dx)
+        self.grid_y = self._clamp(self.grid_y + dy)
 
-        # Linear interpolation (LERP)
-        self.pixel_x += (target_x - self.pixel_x) * self.speed
-        self.pixel_y += (target_y - self.pixel_y) * self.speed
+    def reset(self, grid_x: int = 0, grid_y: int = 0) -> None:
+        self.set_position(
+            grid_x,
+            grid_y,
+            animate=False,
+        )
 
-    def draw(self, surface):
-        # Use integer pixel coordinates for rendering
+    def update(self) -> None:
+        target_x, target_y = self._grid_to_pixel(
+            self.grid_x,
+            self.grid_y,
+        )
+
+        self.pixel_x += (target_x - self.pixel_x) * self._speed
+
+        self.pixel_y += (target_y - self.pixel_y) * self._speed
+
+    def draw(self, surface: pygame.Surface) -> None:
         center_x = int(self.pixel_x)
         center_y = int(self.pixel_y)
 
-        radius = CELL_SIZE // 10
-        robot_body_size = radius * 3
+        radius = max(4, self._cell_size // 10)
+        body_size = radius * 3
+        head_offset = max(6, self._cell_size // 10)
 
-        # Head
-        pygame.draw.circle(surface, ROBOT_HEAD_COLOR, (center_x, center_y - 10), radius)
-        # Body
+        pygame.draw.circle(
+            surface,
+            ROBOT_HEAD_COLOR,
+            (
+                center_x,
+                center_y - head_offset,
+            ),
+            radius,
+        )
+
         pygame.draw.rect(
             surface,
             ROBOT_BODY_COLOR,
             (
-                center_x - (robot_body_size // 2),
-                center_y - 1,
-                robot_body_size,
-                robot_body_size,
+                center_x - body_size // 2,
+                center_y,
+                body_size,
+                body_size,
             ),
-            border_radius=5,
+            border_radius=max(
+                2,
+                self._cell_size // 20,
+            ),
         )
 
-    def _grid_to_pixel(self, gx: int, gy: int) -> tuple[int, int]:
-        """Helper to compute cell center pixel coordinates from grid index."""
-        cx = gx * CELL_SIZE + CELL_SIZE // 2
-        cy = gy * CELL_SIZE + CELL_SIZE // 2
-        return cx, cy
+    def _grid_to_pixel(
+        self,
+        grid_x: int,
+        grid_y: int,
+    ) -> tuple[int, int]:
+        pixel_x = grid_x * self._cell_size + self._cell_size // 2
+
+        pixel_y = grid_y * self._cell_size + self._cell_size // 2
+
+        return pixel_x, pixel_y
+
+    def _clamp(self, value: int) -> int:
+        return max(
+            0,
+            min(self._grid_size - 1, value),
+        )

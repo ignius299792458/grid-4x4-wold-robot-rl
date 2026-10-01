@@ -1,23 +1,33 @@
+from collections.abc import Callable
+
 import pygame
 
-from grid_nxn_world.world import GridWorld
 
-
-def handle_events(world: GridWorld):
-    """Processes window and keyboard events for GridWorld"""
+def handle_events(
+    robot_move: Callable[[int, int], None],
+    robot_reset: Callable[[], None],
+) -> bool:
     for event in pygame.event.get():
+
         if event.type == pygame.QUIT:
             return False
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                world.step(0, -1)
-            elif event.key == pygame.K_DOWN:
-                world.step(0, 1)
-            elif event.key == pygame.K_LEFT:
-                world.step(-1, 0)
-            elif event.key == pygame.K_RIGHT:
-                world.step(1, 0)
-            elif event.key == pygame.K_r:  # reset : Key - "r"
-                world.reset()
+
+        if event.type != pygame.KEYDOWN:
+            continue
+
+        if event.key == pygame.K_UP:
+            robot_move(0, -1)
+
+        elif event.key == pygame.K_DOWN:
+            robot_move(0, 1)
+
+        elif event.key == pygame.K_LEFT:
+            robot_move(-1, 0)
+
+        elif event.key == pygame.K_RIGHT:
+            robot_move(1, 0)
+
+        elif event.key == pygame.K_r:
+            robot_reset()
 
     return True
