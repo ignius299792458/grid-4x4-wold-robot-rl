@@ -9,9 +9,9 @@ if needed in the future
 
 import pygame
 
-from grid_4x4_robot.config import BG_COLOR
-from grid_4x4_robot.grid import draw_grid
-from grid_4x4_robot.robot import Robot
+from grid_nxn_world.config import BG_COLOR
+from grid_nxn_world.grid import draw_grid
+from grid_nxn_world.robot import Robot
 
 
 class GridWorld:

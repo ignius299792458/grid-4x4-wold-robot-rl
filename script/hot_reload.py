@@ -24,7 +24,7 @@ jurigged.watch(str(SRC_DIR))
 
 
 # Import application entry point
-from grid_4x4_robot.main import main
+from grid_nxn_world.main import main
 
 if __name__ == "__main__":
     print("🔥 Hot reload enabled")

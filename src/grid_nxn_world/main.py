@@ -1,8 +1,8 @@
 import pygame
 
-from grid_4x4_robot.config import GRID_SIZE, WINDOW_SIZE
-from grid_4x4_robot.events import handle_events
-from grid_4x4_robot.world import GridWorld
+from grid_nxn_world.config import GRID_SIZE, WINDOW_SIZE
+from grid_nxn_world.events import handle_events
+from grid_nxn_world.world import GridWorld
 
 
 def create_window():

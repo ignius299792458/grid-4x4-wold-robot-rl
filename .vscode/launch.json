@@ -8,10 +8,10 @@
       "console": "integratedTerminal"
     },
     {
-      "name": "(grid_4x4_robot)",
+      "name": "(grid_nxn_world)",
       "type": "debugpy",
       "request": "launch",
-      "module": "grid_4x4_robot.main",
+      "module": "grid_nxn_world.main",
       "cwd": "${workspaceFolder}",
       "env": {
         "PYTHONPATH": "${workspaceFolder}/src"
