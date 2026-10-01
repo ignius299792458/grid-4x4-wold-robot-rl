@@ -33,6 +33,7 @@ class Action(Enum):
 class GridWorld4x4:
     GRID_SIZE = 4
     STATES_CARDINALITY = GRID_SIZE * GRID_SIZE
+    STEP_REWARD = -1
 
     def __init__(self):
         self.states = tuple(range(self.STATES_CARDINALITY))
@@ -40,56 +41,50 @@ class GridWorld4x4:
         self.actions = tuple(Action)
 
     def transition(self, state: int, action: Action) -> int:
-        """
-        Return the next state produced by taking action in state.
-
-        Movement is deterministic.
-
-        If the action would leave the grid,
-        the agent remains in the same state.
-        """
+        """Execute transition in grid-env"""
         self._validate_state(state)
         self._validate_action(action)
 
-        # if terminal state
         if self.is_terminal(state):
             return state
 
         x, y = self._state_to_position(state)
         next_x = x + action.dx
         next_y = y + action.dy
-
         if not self._is_valid_position(next_x, next_y):
             return state
-
         return self._position_to_state(next_x, next_y)
 
+    def step(self, state: int, action: Action) -> tuple[int, int, bool]:
+        """Execute one MDP transition, return: (next_state, reward, terminated)"""
+        self._validate_state(state)
+        self._validate_action(action)
+
+        if self.is_terminal(state):
+            return state, 0, True
+
+        next_state = self.transition(state, action)
+        reward = self.STEP_REWARD
+        terminated = self.is_terminal(next_state)
+
+        return next_state, reward, terminated
+
     def _state_to_position(self, state: int) -> tuple[int, int]:
-        """Convert state number to (x, y) grid coordinates."""
         x = state % self.GRID_SIZE
         y = state // self.GRID_SIZE
-
         return x, y
 
     def _position_to_state(self, x: int, y: int) -> int:
-        """Convert (x, y) grid coordinates to state number."""
         return x + self.GRID_SIZE * y
 
     def is_terminal(self, state: int) -> bool:
-        """Return True if state is terminal."""
         self._validate_state(state)
         return state in self.terminal_states
 
-    # ----------------------------------------
-    # VALIDATES
-    # ----------------------------------------
-
     def _is_valid_position(self, x: int, y: int) -> bool:
-        """Return True if position lies inside the grid."""
         return 0 <= x < self.GRID_SIZE and 0 <= y < self.GRID_SIZE
 
     def _validate_state(self, state: int) -> None:
-        """Ensure state belongs to the environment."""
         if state not in self.states:
             raise ValueError(
                 f"State {state} is outside "
@@ -97,6 +92,5 @@ class GridWorld4x4:
             )
 
     def _validate_action(self, action: Action) -> None:
-        """Ensure action belongs to the action space."""
         if not isinstance(action, Action):
             raise ValueError(f"{action!r} is not a valid Action.")
