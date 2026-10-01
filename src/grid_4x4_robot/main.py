@@ -1,49 +1,35 @@
 import pygame
 
-from grid_4x4_robot.config import BG_COLOR, WINDOW_SIZE
+from grid_4x4_robot.config import GRID_SIZE, WINDOW_SIZE
 from grid_4x4_robot.events import handle_events
-from grid_4x4_robot.grid import draw_grid
-from grid_4x4_robot.robot import Robot
+from grid_4x4_robot.world import GridWorld
 
 
 def create_window():
     pygame.init()
-
     screen = pygame.display.set_mode((WINDOW_SIZE, WINDOW_SIZE))
-
-    pygame.display.set_caption("4x4 Grid World and Robot")
-
+    pygame.display.set_caption(f"{GRID_SIZE}x{GRID_SIZE} GridWorld-X-Robot")
     return screen, pygame.time.Clock()
 
 
-def update(robot: Robot):
-    robot.update()
-
-
-def draw(screen):
-    screen.fill(BG_COLOR)
-    draw_grid(screen)
-    robot.draw(screen)
-
-
-robot = Robot(grid_x=0, grid_y=0)
-
-
 def main():
-
+    world = GridWorld()
     screen, clock = create_window()
 
     running = True
     while running:
-        running = handle_events(robot=robot)
+        running = handle_events(world)
 
-        update(robot=robot)
+        world.update()
 
-        draw(screen)
+        world.draw(screen)
 
         pygame.display.flip()
         clock.tick(60)
 
     print("_____ Termination of environment _____")
-
     pygame.quit()
+
+
+if __name__ == "__main__":
+    main()
