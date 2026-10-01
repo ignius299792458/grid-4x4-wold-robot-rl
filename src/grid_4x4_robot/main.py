@@ -16,8 +16,8 @@ def create_window():
     return screen, pygame.time.Clock()
 
 
-def update():
-    pass
+def update(robot: Robot):
+    robot.update()
 
 
 def draw(screen):
@@ -37,7 +37,7 @@ def main():
     while running:
         running = handle_events(robot=robot)
 
-        update()
+        update(robot=robot)
 
         draw(screen)
 
