@@ -1,7 +1,7 @@
 """
-Auto Reload:
+Auto Reload
 
-Changes on certain file will reload whole project (cold-restart)
+Cold-restarts the application when files inside src/ change.
 """
 
 import sys
@@ -9,12 +9,20 @@ from pathlib import Path
 
 import hupper
 
-src_dir = Path(__file__).resolve().parent / "src"
-if str(src_dir) not in sys.path:
-    sys.path.insert(0, str(src_dir))
+# Project directories
+ROOT_DIR = Path(__file__).resolve().parent.parent
+SRC_DIR = ROOT_DIR / "src"
+
+
+# Make src/ importable
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
+
 
 if __name__ == "__main__":
-    reloader = hupper.start_reloader("grid_nxn_world.main.main")
+    print("♻️ Auto reload enabled")
+    print(f"📁 Watching: {SRC_DIR}")
 
-    # Watch every file and asset inside the src/ folder
-    reloader.watch_files([str(p) for p in src_dir.rglob("*") if p.is_file()])
+    reloader = hupper.start_reloader("grid_nxn_world.__main__.main")
+
+    reloader.watch_files([str(path) for path in SRC_DIR.rglob("*") if path.is_file()])

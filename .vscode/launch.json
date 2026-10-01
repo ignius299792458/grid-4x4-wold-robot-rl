@@ -8,19 +8,19 @@
       "console": "integratedTerminal"
     },
     {
-      "name": "(grid_nxn_world)",
+      "name": "Grid NxN World",
       "type": "debugpy",
       "request": "launch",
-      "module": "grid_nxn_world.main",
+      "module": "grid_nxn_world",
       "cwd": "${workspaceFolder}",
       "env": {
         "PYTHONPATH": "${workspaceFolder}/src"
       },
       "justMyCode": false,
-      "console": "internalConsole"
+      "console": "integratedTerminal"
     },
     {
-      "name": "Auto-Reload: Pygame",
+      "name": "Auto-Reload: Grid World",
       "type": "debugpy",
       "request": "launch",
       "program": "${workspaceFolder}/script/auto_reload.py",
@@ -28,11 +28,11 @@
       "env": {
         "PYTHONPATH": "${workspaceFolder}/src"
       },
-      "console": "internalConsole",
+      "console": "integratedTerminal",
       "justMyCode": false
     },
     {
-      "name": "Hot-Reload: Pygame",
+      "name": "Hot-Reload: Grid World",
       "type": "debugpy",
       "request": "launch",
       "program": "${workspaceFolder}/script/hot_reload.py",
@@ -40,7 +40,7 @@
       "env": {
         "PYTHONPATH": "${workspaceFolder}/src"
       },
-      "console": "internalConsole",
+      "console": "integratedTerminal",
       "justMyCode": true
     }
   ]
