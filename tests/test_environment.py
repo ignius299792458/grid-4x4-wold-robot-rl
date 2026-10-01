@@ -7,9 +7,9 @@ os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 import pygame
 
-from grid_4x4_robot.config import GRID_SIZE
-from grid_4x4_robot.robot import Robot
-from grid_4x4_robot.world import GridWorld
+from grid_nxn_world.config import GRID_SIZE
+from grid_nxn_world.robot import Robot
+from grid_nxn_world.world import GridWorld
 
 
 @pytest.fixture(autouse=True)

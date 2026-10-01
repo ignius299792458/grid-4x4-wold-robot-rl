@@ -1,6 +1,6 @@
 import pygame
 
-from grid_4x4_robot.config import (
+from grid_nxn_world.config import (
     CELL_SIZE,
     GRID_LINE_COLOR,
     GRID_SIZE,

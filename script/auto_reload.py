@@ -14,7 +14,7 @@ if str(src_dir) not in sys.path:
     sys.path.insert(0, str(src_dir))
 
 if __name__ == "__main__":
-    reloader = hupper.start_reloader("grid_4x4_robot.main.main")
+    reloader = hupper.start_reloader("grid_nxn_world.main.main")
 
     # Watch every file and asset inside the src/ folder
     reloader.watch_files([str(p) for p in src_dir.rglob("*") if p.is_file()])

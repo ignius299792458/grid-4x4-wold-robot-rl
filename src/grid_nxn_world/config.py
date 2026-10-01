@@ -1,5 +1,5 @@
-WINDOW_SIZE = 400
-GRID_SIZE = 4
+WINDOW_SIZE = 400 # if you increase the GRID_SIZE also relatively incease it
+GRID_SIZE = 4 # configure here for NxN grid 
 CELL_SIZE = WINDOW_SIZE // GRID_SIZE
 
 # Colors (RGB)

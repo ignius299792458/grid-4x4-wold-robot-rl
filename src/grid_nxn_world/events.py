@@ -1,6 +1,6 @@
 import pygame
 
-from grid_4x4_robot.world import GridWorld
+from grid_nxn_world.world import GridWorld
 
 
 def handle_events(world: GridWorld):
