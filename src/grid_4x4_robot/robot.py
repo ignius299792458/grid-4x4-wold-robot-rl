@@ -21,6 +21,21 @@ class Robot:
         # Animation speed factor (0.2 means 20% of remaining distance per frame)
         self.speed = 0.25
 
+    @property
+    def position(self) -> tuple[int, int]:
+        """Return the current logical grid coordinates as (x,y)"""
+        return (self.grid_x, self.grid_y)
+
+    def reset(self, grid_x: int = 0, grid_y: int = 0):
+        """Reset logical and visual position to specified grid coordinates"""
+        self.grid_x = max(0, min(GRID_SIZE - 1, grid_x))
+        self.grid_y = max(0, min(GRID_SIZE - 1, grid_y))
+
+        # Instantly sync visual pixel position to target cell center
+        target_x, target_y = self._grid_to_pixel(self.grid_x, self.grid_y)
+        self.pixel_x = float(target_x)
+        self.pixel_y = float(target_y)
+
     def move(self, dx, dy):
         """Update logical grid target coordinates."""
         self.grid_x = max(0, min(GRID_SIZE - 1, self.grid_x + dx))
@@ -57,3 +72,9 @@ class Robot:
             ),
             border_radius=5,
         )
+
+    def _grid_to_pixel(self, gx: int, gy: int) -> tuple[int, int]:
+        """Helper to compute cell center pixel coordinates from grid index."""
+        cx = gx * CELL_SIZE + CELL_SIZE // 2
+        cy = gy * CELL_SIZE + CELL_SIZE // 2
+        return cx, cy
