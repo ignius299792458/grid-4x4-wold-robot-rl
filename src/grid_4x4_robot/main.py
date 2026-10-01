@@ -24,7 +24,7 @@ def main():
 
         world.draw(screen)
 
-        pygame.display.update()
+        pygame.display.flip()
         clock.tick(60)
 
     print("_____ Termination of environment _____")
