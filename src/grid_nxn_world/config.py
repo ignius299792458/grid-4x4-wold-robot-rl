@@ -1,13 +1,15 @@
-WINDOW_SIZE = 400 # if you increase the GRID_SIZE also relatively incease it
-GRID_SIZE = 4 # configure here for NxN grid 
-CELL_SIZE = WINDOW_SIZE // GRID_SIZE
+DEFAULT_GRID_SIZE = 4
+DEFAULT_CELL_SIZE = 100
+DEFAULT_FPS = 60
+DEFAULT_WINDOW_TITLE = "Grid World"
 
-# Colors (RGB)
+# Colors
 BG_COLOR = (245, 245, 245)
 GRID_LINE_COLOR = (180, 180, 180)
-HIGHLIGHT_COLOR = (220, 235, 252)  # Soft blue tint for active cell
-TEXT_COLOR = (140, 140, 140)  # Muted grey for grid coordinates
+HIGHLIGHT_COLOR = (220, 235, 252)
+TEXT_COLOR = (140, 140, 140)
 
-# Robot palette
-ROBOT_HEAD_COLOR = (52, 152, 219)  # Light blue
-ROBOT_BODY_COLOR = (41, 128, 185)  # Dark blue
+# Robot
+ROBOT_HEAD_COLOR = (52, 152, 219)
+ROBOT_BODY_COLOR = (41, 128, 185)
+ROBOT_ANIMATION_SPEED = 0.25

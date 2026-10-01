@@ -1,8 +1,8 @@
 """
 Hot Reload
 
-Runs the Pygame application while allowing changes inside src/
-to be patched into the running process without restarting.
+Runs the GridWorld application while allowing Python source
+changes inside src/ to be patched into the running process.
 """
 
 import sys
@@ -10,21 +10,21 @@ from pathlib import Path
 
 import jurigged
 
-# Project root
+# Project directories
 ROOT_DIR = Path(__file__).resolve().parent.parent
 SRC_DIR = ROOT_DIR / "src"
 
-# Add src/ to Python path
+
+# Make src/ importable
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 
-# Enable hot reload for the source directory
+# Watch source code for live changes
 jurigged.watch(str(SRC_DIR))
 
 
-# Import application entry point
-from grid_nxn_world.main import main
+from grid_nxn_world.__main__ import main
 
 if __name__ == "__main__":
     print("🔥 Hot reload enabled")

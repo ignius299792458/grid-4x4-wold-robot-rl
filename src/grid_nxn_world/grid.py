@@ -1,43 +1,95 @@
 import pygame
 
-from grid_nxn_world.config import (
-    CELL_SIZE,
-    GRID_LINE_COLOR,
-    GRID_SIZE,
-    HIGHLIGHT_COLOR,
-    TEXT_COLOR,
-    WINDOW_SIZE,
-)
-
-# Lazy font initialization
-_font = None
+from grid_nxn_world.config import GRID_LINE_COLOR, HIGHLIGHT_COLOR, TEXT_COLOR
 
 
-def _get_font():
-    global _font
-    if _font is None:
-        _font = pygame.font.SysFont("arial", 12)
-    return _font
+class Grid:
+    def __init__(self, size: int, cell_size: int):
+        self._size = size
+        self._cell_size = cell_size
+        self._font = None
 
+    @property
+    def size(self) -> int:
+        return self._size
 
-def draw_grid(surface: pygame.Surface, active_cell: tuple[int, int] = None):
-    # 1. Draw Active Cell Highlight
-    if active_cell is not None:
-        gx, gy = active_cell
-        highlight_rect = pygame.Rect(
-            gx * CELL_SIZE, gy * CELL_SIZE, CELL_SIZE, CELL_SIZE
+    @property
+    def cell_size(self) -> int:
+        return self._cell_size
+
+    @property
+    def pixel_size(self) -> int:
+        return self._size * self._cell_size
+
+    def draw(
+        self,
+        surface: pygame.Surface,
+        active_cell: tuple[int, int] | None = None,
+    ) -> None:
+        self._draw_active_cell(surface, active_cell)
+        self._draw_lines(surface)
+        self._draw_coordinates(surface)
+
+    def _draw_active_cell(
+        self,
+        surface: pygame.Surface,
+        active_cell: tuple[int, int] | None,
+    ) -> None:
+        if active_cell is None:
+            return
+
+        x, y = active_cell
+
+        rect = pygame.Rect(
+            x * self._cell_size,
+            y * self._cell_size,
+            self._cell_size,
+            self._cell_size,
         )
-        pygame.draw.rect(surface, HIGHLIGHT_COLOR, highlight_rect)
 
-    # 2. Draw Grid Lines
-    for i in range(GRID_SIZE + 1):
-        pos = i * CELL_SIZE
-        pygame.draw.line(surface, GRID_LINE_COLOR, (pos, 0), (pos, WINDOW_SIZE), 2)
-        pygame.draw.line(surface, GRID_LINE_COLOR, (0, pos), (WINDOW_SIZE, pos), 2)
+        pygame.draw.rect(surface, HIGHLIGHT_COLOR, rect)
 
-    # 3. Draw Coordinate Labels
-    font = _get_font()
-    for row in range(GRID_SIZE):
-        for col in range(GRID_SIZE):
-            label = font.render(f"{col},{row}", True, TEXT_COLOR)
-            surface.blit(label, (col * CELL_SIZE + 8, row * CELL_SIZE + 6))
+    def _draw_lines(self, surface: pygame.Surface) -> None:
+        for i in range(self._size + 1):
+            position = i * self._cell_size
+
+            pygame.draw.line(
+                surface,
+                GRID_LINE_COLOR,
+                (position, 0),
+                (position, self.pixel_size),
+                2,
+            )
+
+            pygame.draw.line(
+                surface,
+                GRID_LINE_COLOR,
+                (0, position),
+                (self.pixel_size, position),
+                2,
+            )
+
+    def _draw_coordinates(self, surface: pygame.Surface) -> None:
+        font = self._get_font()
+
+        for row in range(self._size):
+            for column in range(self._size):
+                label = font.render(
+                    f"{column},{row}",
+                    True,
+                    TEXT_COLOR,
+                )
+
+                surface.blit(
+                    label,
+                    (
+                        column * self._cell_size + 8,
+                        row * self._cell_size + 6,
+                    ),
+                )
+
+    def _get_font(self) -> pygame.font.Font:
+        if self._font is None:
+            self._font = pygame.font.SysFont("arial", 12)
+
+        return self._font
