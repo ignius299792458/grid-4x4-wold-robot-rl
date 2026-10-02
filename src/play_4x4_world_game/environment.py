@@ -33,7 +33,8 @@ class Action(Enum):
 class GridWorld4x4:
     GRID_SIZE = 4
     STATES_CARDINALITY = GRID_SIZE * GRID_SIZE
-    STEP_REWARD = -1
+    STEP_REWARD = -1.0
+    TERMINAL_STATE_REWARD = 0.0
 
     def __init__(self):
         self.states = tuple(range(self.STATES_CARDINALITY))
@@ -55,19 +56,19 @@ class GridWorld4x4:
             return state
         return self._position_to_state(next_x, next_y)
 
-    def step(self, state: int, action: Action) -> tuple[int, int, bool]:
+    def step(self, state: int, action: Action) -> tuple[int, float, bool]:
         """Execute one MDP transition, return: (next_state, reward, terminated)"""
         self._validate_state(state)
         self._validate_action(action)
 
         if self.is_terminal(state):
-            return state, 0, True
+            return state, self.TERMINAL_STATE_REWARD, True
 
         next_state = self.transition(state, action)
         reward = self.STEP_REWARD
         terminated = self.is_terminal(next_state)
 
-        return next_state, reward, terminated
+        return next_state, float(reward), terminated
 
     def _state_to_position(self, state: int) -> tuple[int, int]:
         x = state % self.GRID_SIZE
