@@ -43,8 +43,8 @@ class GridWorld4x4:
 
     def transition(self, state: int, action: Action) -> int:
         """Execute transition in grid-env"""
-        self._validate_state(state)
-        self._validate_action(action)
+        self.validate_state(state)
+        self.validate_action(action)
 
         if self.is_terminal(state):
             return state
@@ -58,8 +58,8 @@ class GridWorld4x4:
 
     def step(self, state: int, action: Action) -> tuple[int, float, bool]:
         """Execute one MDP transition, return: (next_state, reward, terminated)"""
-        self._validate_state(state)
-        self._validate_action(action)
+        self.validate_state(state)
+        self.validate_action(action)
 
         if self.is_terminal(state):
             return state, self.TERMINAL_STATE_REWARD, True
@@ -79,19 +79,19 @@ class GridWorld4x4:
         return x + self.GRID_SIZE * y
 
     def is_terminal(self, state: int) -> bool:
-        self._validate_state(state)
+        self.validate_state(state)
         return state in self.terminal_states
 
     def _is_valid_position(self, x: int, y: int) -> bool:
         return 0 <= x < self.GRID_SIZE and 0 <= y < self.GRID_SIZE
 
-    def _validate_state(self, state: int) -> None:
+    def validate_state(self, state: int) -> None:
         if state not in self.states:
             raise ValueError(
                 f"State {state} is outside "
                 f"the valid value range 0-{self.STATES_CARDINALITY - 1}."
             )
 
-    def _validate_action(self, action: Action) -> None:
+    def validate_action(self, action: Action) -> None:
         if not isinstance(action, Action):
             raise ValueError(f"{action!r} is not a valid Action.")
