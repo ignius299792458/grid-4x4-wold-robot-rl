@@ -1,6 +1,6 @@
 [project]
 name = "grid-4x4-robot-world-rl"
-version = "0.1.0"
+version = "1.1.0"
 description = ""
 authors = [
     {name = "ignius299792458"}
