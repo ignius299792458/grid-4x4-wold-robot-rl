@@ -8,7 +8,7 @@ ACTION_SYMBOLS = {
 }
 
 
-def render_policy_and_values(values: dict[int, float], best_actions: dict[int, tuple]):
+def plot_improved_policy(values: dict[int, float], best_actions: dict[int, tuple]):
     fig, ax = plt.subplots(figsize=(6, 6))
 
     grid_size = 4
@@ -67,4 +67,77 @@ def render_policy_and_values(values: dict[int, float], best_actions: dict[int, t
         )
 
     plt.title("Greedy Policy and State Values")
+    plt.show()
+
+
+def plot_iterated_policy(
+    action_map: dict[int, tuple],
+    values: dict[int, float],
+    grid_size: int = 4,
+    title: str = "Policy Iteration Result",
+) -> None:
+    action_symbols = {
+        "UP": "↑",
+        "DOWN": "↓",
+        "LEFT": "←",
+        "RIGHT": "→",
+    }
+
+    fig, ax = plt.subplots(figsize=(7, 7))
+
+    ax.set_xlim(0, grid_size)
+    ax.set_ylim(0, grid_size)
+    ax.set_aspect("equal")
+    ax.invert_yaxis()
+
+    ax.set_xticks(range(grid_size + 1))
+    ax.set_yticks(range(grid_size + 1))
+    ax.grid(True, linewidth=1.5)
+
+    ax.set_xticklabels([])
+    ax.set_yticklabels([])
+
+    for state in range(grid_size * grid_size):
+        x = state % grid_size
+        y = state // grid_size
+
+        value = values[state]
+        best_actions = action_map[state]
+
+        if len(best_actions) == 0:
+            action_text = "T"
+        else:
+            action_text = " ".join(
+                action_symbols[action.name] for action in best_actions
+            )
+
+        # state id
+        ax.text(
+            x + 0.08,
+            y + 0.18,
+            f"s={state}",
+            fontsize=10,
+        )
+
+        # state value
+        ax.text(
+            x + 0.5,
+            y + 0.48,
+            f"{value:.1f}",
+            ha="center",
+            va="center",
+            fontsize=12,
+        )
+
+        # best action(s)
+        ax.text(
+            x + 0.5,
+            y + 0.78,
+            action_text,
+            ha="center",
+            va="center",
+            fontsize=16,
+        )
+
+    ax.set_title(title)
     plt.show()
