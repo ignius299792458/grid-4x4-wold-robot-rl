@@ -33,6 +33,10 @@ class Paint:
         self._surface: pygame.Surface | None = None
         self._clock: pygame.time.Clock | None = None
 
+        self._terminal_cells: tuple[tuple[int, int], ...] = ()
+        self._robot_trace: list[tuple[int, int]] = []
+        self._goal_sound: pygame.mixer.Sound | None = None
+
     def render(
         self,
         robot_move: Callable[[int, int], None],
@@ -89,6 +93,8 @@ class Paint:
         self._grid.draw(
             surface=self._surface,
             active_cell=self._robot.position,
+            terminal_cells=self._terminal_cells,
+            robot_trace=tuple(self._robot_trace),
         )
 
         self._robot.draw(self._surface)
@@ -96,3 +102,32 @@ class Paint:
         pygame.display.flip()
 
         self._clock.tick(self._fps)
+
+    def set_terminal_cells(
+        self,
+        cells: tuple[tuple[int, int], ...],
+    ) -> None:
+        self._terminal_cells = cells
+
+    def robot_trace_clear(self) -> None:
+        self._robot_trace.clear()
+
+    def robot_trace_add(
+        self,
+        position: tuple[int, int],
+    ) -> None:
+        self._robot_trace.append(position)
+
+    def load_goal_sound(self, path: str) -> None:
+        try:
+            if not pygame.mixer.get_init():
+                pygame.mixer.init()
+
+            self._goal_sound = pygame.mixer.Sound(path)
+
+        except pygame.error:
+            self._goal_sound = None
+
+    def play_goal_sound(self) -> None:
+        if self._goal_sound is not None:
+            self._goal_sound.play()
