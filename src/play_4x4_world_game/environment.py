@@ -14,6 +14,8 @@ Rendering does not belong here.
 
 from enum import Enum
 
+from play_4x4_world_game.utils import position_to_state, state_to_position
+
 
 class Action(Enum):
     UP = (0, -1)
@@ -49,12 +51,12 @@ class GridWorld4x4:
         if self.is_terminal(state):
             return state
 
-        x, y = self._state_to_position(state)
+        x, y = state_to_position(state)
         next_x = x + action.dx
         next_y = y + action.dy
         if not self._is_valid_position(next_x, next_y):
             return state
-        return self._position_to_state(next_x, next_y)
+        return position_to_state(next_x, next_y)
 
     def step(self, state: int, action: Action) -> tuple[int, float, bool]:
         """Execute one MDP transition, return: (next_state, reward, terminated)"""
@@ -69,14 +71,6 @@ class GridWorld4x4:
         terminated = self.is_terminal(next_state)
 
         return next_state, float(reward), terminated
-
-    def _state_to_position(self, state: int) -> tuple[int, int]:
-        x = state % self.GRID_SIZE
-        y = state // self.GRID_SIZE
-        return x, y
-
-    def _position_to_state(self, x: int, y: int) -> int:
-        return x + self.GRID_SIZE * y
 
     def is_terminal(self, state: int) -> bool:
         self.validate_state(state)

@@ -17,10 +17,10 @@ def test_state_space():
 def test_state_position_mapping():
     env = GridWorld4x4()
 
-    assert env._state_to_position(0) == (0, 0)
-    assert env._state_to_position(5) == (1, 1)
-    assert env._state_to_position(6) == (2, 1)
-    assert env._state_to_position(15) == (3, 3)
+    assert env.state_to_position(0) == (0, 0)
+    assert env.state_to_position(5) == (1, 1)
+    assert env.state_to_position(6) == (2, 1)
+    assert env.state_to_position(15) == (3, 3)
 
 
 def test_env_step():
