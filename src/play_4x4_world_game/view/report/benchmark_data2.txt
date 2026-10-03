@@ -1,0 +1,575 @@
+============================================================
+POLICY ITERATION 0
+============================================================
+
+Evaluating current policy...
+
+State values Vπ:
+   0.00  -14.00  -20.00  -22.00
+ -14.00  -18.00  -20.00  -20.00
+ -20.00  -20.00  -18.00  -14.00
+ -22.00  -20.00  -14.00    0.00
+
+Demonstrating current policy...
+
+Playing policy from iteration 0 starting at state 3
+step=01 | state= 3 | action=DOWN  | next= 7 | reward=-1.0
+step=02 | state= 7 | action=UP    | next= 3 | reward=-1.0
+step=03 | state= 3 | action=DOWN  | next= 7 | reward=-1.0
+step=04 | state= 7 | action=RIGHT | next= 7 | reward=-1.0
+step=05 | state= 7 | action=LEFT  | next= 6 | reward=-1.0
+step=06 | state= 6 | action=RIGHT | next= 7 | reward=-1.0
+step=07 | state= 7 | action=RIGHT | next= 7 | reward=-1.0
+step=08 | state= 7 | action=DOWN  | next=11 | reward=-1.0
+step=09 | state=11 | action=LEFT  | next=10 | reward=-1.0
+step=10 | state=10 | action=LEFT  | next= 9 | reward=-1.0
+step=11 | state= 9 | action=DOWN  | next=13 | reward=-1.0
+step=12 | state=13 | action=LEFT  | next=12 | reward=-1.0
+step=13 | state=12 | action=LEFT  | next=12 | reward=-1.0
+step=14 | state=12 | action=DOWN  | next=12 | reward=-1.0
+step=15 | state=12 | action=UP    | next= 8 | reward=-1.0
+step=16 | state= 8 | action=UP    | next= 4 | reward=-1.0
+step=17 | state= 4 | action=DOWN  | next= 8 | reward=-1.0
+step=18 | state= 8 | action=RIGHT | next= 9 | reward=-1.0
+step=19 | state= 9 | action=RIGHT | next=10 | reward=-1.0
+step=20 | state=10 | action=LEFT  | next= 9 | reward=-1.0
+step=21 | state= 9 | action=DOWN  | next=13 | reward=-1.0
+step=22 | state=13 | action=DOWN  | next=13 | reward=-1.0
+step=23 | state=13 | action=DOWN  | next=13 | reward=-1.0
+step=24 | state=13 | action=RIGHT | next=14 | reward=-1.0
+step=25 | state=14 | action=RIGHT | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 25 steps.
+Path: 3 -> 7 -> 3 -> 7 -> 7 -> 6 -> 7 -> 7 -> 11 -> 10 -> 9 -> 13 -> 12 -> 12 -> 12 -> 8 -> 4 -> 8 -> 9 -> 10 -> 9 -> 13 -> 13 -> 13 -> 14 -> 15
+------------------------------------------------------------
+Restart again from certain state: 1
+step=26 | state= 1 | action=LEFT  | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 26 steps.
+Path: 3 -> 7 -> 3 -> 7 -> 7 -> 6 -> 7 -> 7 -> 11 -> 10 -> 9 -> 13 -> 12 -> 12 -> 12 -> 8 -> 4 -> 8 -> 9 -> 10 -> 9 -> 13 -> 13 -> 13 -> 14 -> 15 -> 0
+------------------------------------------------------------
+Restart again from certain state: 3
+step=27 | state= 3 | action=LEFT  | next= 2 | reward=-1.0
+step=28 | state= 2 | action=UP    | next= 2 | reward=-1.0
+step=29 | state= 2 | action=LEFT  | next= 1 | reward=-1.0
+step=30 | state= 1 | action=LEFT  | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 30 steps.
+Path: 3 -> 7 -> 3 -> 7 -> 7 -> 6 -> 7 -> 7 -> 11 -> 10 -> 9 -> 13 -> 12 -> 12 -> 12 -> 8 -> 4 -> 8 -> 9 -> 10 -> 9 -> 13 -> 13 -> 13 -> 14 -> 15 -> 0 -> 2 -> 2 -> 1 -> 0
+------------------------------------------------------------
+Restart again from certain state: 5
+step=31 | state= 5 | action=RIGHT | next= 6 | reward=-1.0
+step=32 | state= 6 | action=LEFT  | next= 5 | reward=-1.0
+step=33 | state= 5 | action=LEFT  | next= 4 | reward=-1.0
+step=34 | state= 4 | action=LEFT  | next= 4 | reward=-1.0
+step=35 | state= 4 | action=DOWN  | next= 8 | reward=-1.0
+step=36 | state= 8 | action=RIGHT | next= 9 | reward=-1.0
+step=37 | state= 9 | action=LEFT  | next= 8 | reward=-1.0
+step=38 | state= 8 | action=RIGHT | next= 9 | reward=-1.0
+step=39 | state= 9 | action=RIGHT | next=10 | reward=-1.0
+step=40 | state=10 | action=UP    | next= 6 | reward=-1.0
+------------------------------------------------------------
+Episode stopped after 40 steps.
+Path: 3 -> 7 -> 3 -> 7 -> 7 -> 6 -> 7 -> 7 -> 11 -> 10 -> 9 -> 13 -> 12 -> 12 -> 12 -> 8 -> 4 -> 8 -> 9 -> 10 -> 9 -> 13 -> 13 -> 13 -> 14 -> 15 -> 0 -> 2 -> 2 -> 1 -> 0 -> 6 -> 5 -> 4 -> 4 -> 8 -> 9 -> 8 -> 9 -> 10 -> 6
+------------------------------------------------------------
+
+Improving policy...
+
+Policy changed.
+Improved policy becomes the current policy.
+
+============================================================
+POLICY ITERATION 1
+============================================================
+
+Evaluating current policy...
+
+State values Vπ:
+   0.00   -1.00   -2.00   -3.00
+  -1.00   -2.00   -3.00   -2.00
+  -2.00   -3.00   -2.00   -1.00
+  -3.00   -2.00   -1.00    0.00
+
+Demonstrating current policy...
+
+Playing policy from iteration 1 starting at state 4
+step=01 | state= 4 | action=UP    | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 1 steps.
+Path: 4 -> 0
+------------------------------------------------------------
+Restart again from certain state: 5
+step=02 | state= 5 | action=LEFT  | next= 4 | reward=-1.0
+step=03 | state= 4 | action=UP    | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 3 steps.
+Path: 4 -> 0 -> 4 -> 0
+------------------------------------------------------------
+Restart again from certain state: 5
+step=04 | state= 5 | action=UP    | next= 1 | reward=-1.0
+step=05 | state= 1 | action=LEFT  | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 5 steps.
+Path: 4 -> 0 -> 4 -> 0 -> 1 -> 0
+------------------------------------------------------------
+Restart again from certain state: 9
+step=06 | state= 9 | action=UP    | next= 5 | reward=-1.0
+step=07 | state= 5 | action=UP    | next= 1 | reward=-1.0
+step=08 | state= 1 | action=LEFT  | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 8 steps.
+Path: 4 -> 0 -> 4 -> 0 -> 1 -> 0 -> 5 -> 1 -> 0
+------------------------------------------------------------
+Restart again from certain state: 10
+step=09 | state=10 | action=RIGHT | next=11 | reward=-1.0
+step=10 | state=11 | action=DOWN  | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 10 steps.
+Path: 4 -> 0 -> 4 -> 0 -> 1 -> 0 -> 5 -> 1 -> 0 -> 11 -> 15
+------------------------------------------------------------
+Restart again from certain state: 5
+step=11 | state= 5 | action=LEFT  | next= 4 | reward=-1.0
+step=12 | state= 4 | action=UP    | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 12 steps.
+Path: 4 -> 0 -> 4 -> 0 -> 1 -> 0 -> 5 -> 1 -> 0 -> 11 -> 15 -> 4 -> 0
+------------------------------------------------------------
+Restart again from certain state: 9
+step=13 | state= 9 | action=RIGHT | next=10 | reward=-1.0
+step=14 | state=10 | action=RIGHT | next=11 | reward=-1.0
+step=15 | state=11 | action=DOWN  | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 15 steps.
+Path: 4 -> 0 -> 4 -> 0 -> 1 -> 0 -> 5 -> 1 -> 0 -> 11 -> 15 -> 4 -> 0 -> 10 -> 11 -> 15
+------------------------------------------------------------
+Restart again from certain state: 10
+step=16 | state=10 | action=DOWN  | next=14 | reward=-1.0
+step=17 | state=14 | action=RIGHT | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 17 steps.
+Path: 4 -> 0 -> 4 -> 0 -> 1 -> 0 -> 5 -> 1 -> 0 -> 11 -> 15 -> 4 -> 0 -> 10 -> 11 -> 15 -> 14 -> 15
+------------------------------------------------------------
+Restart again from certain state: 10
+step=18 | state=10 | action=DOWN  | next=14 | reward=-1.0
+step=19 | state=14 | action=RIGHT | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 19 steps.
+Path: 4 -> 0 -> 4 -> 0 -> 1 -> 0 -> 5 -> 1 -> 0 -> 11 -> 15 -> 4 -> 0 -> 10 -> 11 -> 15 -> 14 -> 15 -> 14 -> 15
+------------------------------------------------------------
+Restart again from certain state: 6
+step=20 | state= 6 | action=LEFT  | next= 5 | reward=-1.0
+step=21 | state= 5 | action=LEFT  | next= 4 | reward=-1.0
+step=22 | state= 4 | action=UP    | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 22 steps.
+Path: 4 -> 0 -> 4 -> 0 -> 1 -> 0 -> 5 -> 1 -> 0 -> 11 -> 15 -> 4 -> 0 -> 10 -> 11 -> 15 -> 14 -> 15 -> 14 -> 15 -> 5 -> 4 -> 0
+------------------------------------------------------------
+Restart again from certain state: 6
+step=23 | state= 6 | action=DOWN  | next=10 | reward=-1.0
+step=24 | state=10 | action=RIGHT | next=11 | reward=-1.0
+step=25 | state=11 | action=DOWN  | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 25 steps.
+Path: 4 -> 0 -> 4 -> 0 -> 1 -> 0 -> 5 -> 1 -> 0 -> 11 -> 15 -> 4 -> 0 -> 10 -> 11 -> 15 -> 14 -> 15 -> 14 -> 15 -> 5 -> 4 -> 0 -> 10 -> 11 -> 15
+------------------------------------------------------------
+Restart again from certain state: 10
+step=26 | state=10 | action=DOWN  | next=14 | reward=-1.0
+step=27 | state=14 | action=RIGHT | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 27 steps.
+Path: 4 -> 0 -> 4 -> 0 -> 1 -> 0 -> 5 -> 1 -> 0 -> 11 -> 15 -> 4 -> 0 -> 10 -> 11 -> 15 -> 14 -> 15 -> 14 -> 15 -> 5 -> 4 -> 0 -> 10 -> 11 -> 15 -> 14 -> 15
+------------------------------------------------------------
+Restart again from certain state: 5
+step=28 | state= 5 | action=UP    | next= 1 | reward=-1.0
+step=29 | state= 1 | action=LEFT  | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 29 steps.
+Path: 4 -> 0 -> 4 -> 0 -> 1 -> 0 -> 5 -> 1 -> 0 -> 11 -> 15 -> 4 -> 0 -> 10 -> 11 -> 15 -> 14 -> 15 -> 14 -> 15 -> 5 -> 4 -> 0 -> 10 -> 11 -> 15 -> 14 -> 15 -> 1 -> 0
+------------------------------------------------------------
+Restart again from certain state: 9
+step=30 | state= 9 | action=UP    | next= 5 | reward=-1.0
+step=31 | state= 5 | action=LEFT  | next= 4 | reward=-1.0
+step=32 | state= 4 | action=UP    | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 32 steps.
+Path: 4 -> 0 -> 4 -> 0 -> 1 -> 0 -> 5 -> 1 -> 0 -> 11 -> 15 -> 4 -> 0 -> 10 -> 11 -> 15 -> 14 -> 15 -> 14 -> 15 -> 5 -> 4 -> 0 -> 10 -> 11 -> 15 -> 14 -> 15 -> 1 -> 0 -> 5 -> 4 -> 0
+------------------------------------------------------------
+Restart again from certain state: 9
+step=33 | state= 9 | action=UP    | next= 5 | reward=-1.0
+step=34 | state= 5 | action=UP    | next= 1 | reward=-1.0
+step=35 | state= 1 | action=LEFT  | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 35 steps.
+Path: 4 -> 0 -> 4 -> 0 -> 1 -> 0 -> 5 -> 1 -> 0 -> 11 -> 15 -> 4 -> 0 -> 10 -> 11 -> 15 -> 14 -> 15 -> 14 -> 15 -> 5 -> 4 -> 0 -> 10 -> 11 -> 15 -> 14 -> 15 -> 1 -> 0 -> 5 -> 4 -> 0 -> 5 -> 1 -> 0
+------------------------------------------------------------
+Restart again from certain state: 6
+step=36 | state= 6 | action=DOWN  | next=10 | reward=-1.0
+step=37 | state=10 | action=DOWN  | next=14 | reward=-1.0
+step=38 | state=14 | action=RIGHT | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 38 steps.
+Path: 4 -> 0 -> 4 -> 0 -> 1 -> 0 -> 5 -> 1 -> 0 -> 11 -> 15 -> 4 -> 0 -> 10 -> 11 -> 15 -> 14 -> 15 -> 14 -> 15 -> 5 -> 4 -> 0 -> 10 -> 11 -> 15 -> 14 -> 15 -> 1 -> 0 -> 5 -> 4 -> 0 -> 5 -> 1 -> 0 -> 10 -> 14 -> 15
+------------------------------------------------------------
+Restart again from certain state: 9
+step=39 | state= 9 | action=RIGHT | next=10 | reward=-1.0
+step=40 | state=10 | action=DOWN  | next=14 | reward=-1.0
+------------------------------------------------------------
+Episode stopped after 40 steps.
+Path: 4 -> 0 -> 4 -> 0 -> 1 -> 0 -> 5 -> 1 -> 0 -> 11 -> 15 -> 4 -> 0 -> 10 -> 11 -> 15 -> 14 -> 15 -> 14 -> 15 -> 5 -> 4 -> 0 -> 10 -> 11 -> 15 -> 14 -> 15 -> 1 -> 0 -> 5 -> 4 -> 0 -> 5 -> 1 -> 0 -> 10 -> 14 -> 15 -> 10 -> 14
+------------------------------------------------------------
+
+Improving policy...
+
+Policy changed.
+Improved policy becomes the current policy.
+
+============================================================
+POLICY ITERATION 2
+============================================================
+
+Evaluating current policy...
+
+State values Vπ:
+   0.00   -1.00   -2.00   -3.00
+  -1.00   -2.00   -3.00   -2.00
+  -2.00   -3.00   -2.00   -1.00
+  -3.00   -2.00   -1.00    0.00
+
+Demonstrating current policy...
+
+Playing policy from iteration 2 starting at state 9
+step=01 | state= 9 | action=DOWN  | next=13 | reward=-1.0
+step=02 | state=13 | action=RIGHT | next=14 | reward=-1.0
+step=03 | state=14 | action=RIGHT | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 3 steps.
+Path: 9 -> 13 -> 14 -> 15
+------------------------------------------------------------
+Restart again from certain state: 5
+step=04 | state= 5 | action=LEFT  | next= 4 | reward=-1.0
+step=05 | state= 4 | action=UP    | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 5 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0
+------------------------------------------------------------
+Restart again from certain state: 13
+step=06 | state=13 | action=RIGHT | next=14 | reward=-1.0
+step=07 | state=14 | action=RIGHT | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 7 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0 -> 14 -> 15
+------------------------------------------------------------
+Restart again from certain state: 9
+step=08 | state= 9 | action=UP    | next= 5 | reward=-1.0
+step=09 | state= 5 | action=UP    | next= 1 | reward=-1.0
+step=10 | state= 1 | action=LEFT  | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 10 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0 -> 14 -> 15 -> 5 -> 1 -> 0
+------------------------------------------------------------
+Restart again from certain state: 7
+step=11 | state= 7 | action=DOWN  | next=11 | reward=-1.0
+step=12 | state=11 | action=DOWN  | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 12 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0 -> 14 -> 15 -> 5 -> 1 -> 0 -> 11 -> 15
+------------------------------------------------------------
+Restart again from certain state: 7
+step=13 | state= 7 | action=DOWN  | next=11 | reward=-1.0
+step=14 | state=11 | action=DOWN  | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 14 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0 -> 14 -> 15 -> 5 -> 1 -> 0 -> 11 -> 15 -> 11 -> 15
+------------------------------------------------------------
+Restart again from certain state: 9
+step=15 | state= 9 | action=LEFT  | next= 8 | reward=-1.0
+step=16 | state= 8 | action=UP    | next= 4 | reward=-1.0
+step=17 | state= 4 | action=UP    | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 17 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0 -> 14 -> 15 -> 5 -> 1 -> 0 -> 11 -> 15 -> 11 -> 15 -> 8 -> 4 -> 0
+------------------------------------------------------------
+Restart again from certain state: 5
+step=18 | state= 5 | action=UP    | next= 1 | reward=-1.0
+step=19 | state= 1 | action=LEFT  | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 19 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0 -> 14 -> 15 -> 5 -> 1 -> 0 -> 11 -> 15 -> 11 -> 15 -> 8 -> 4 -> 0 -> 1 -> 0
+------------------------------------------------------------
+Restart again from certain state: 9
+step=20 | state= 9 | action=DOWN  | next=13 | reward=-1.0
+step=21 | state=13 | action=RIGHT | next=14 | reward=-1.0
+step=22 | state=14 | action=RIGHT | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 22 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0 -> 14 -> 15 -> 5 -> 1 -> 0 -> 11 -> 15 -> 11 -> 15 -> 8 -> 4 -> 0 -> 1 -> 0 -> 13 -> 14 -> 15
+------------------------------------------------------------
+Restart again from certain state: 8
+step=23 | state= 8 | action=UP    | next= 4 | reward=-1.0
+step=24 | state= 4 | action=UP    | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 24 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0 -> 14 -> 15 -> 5 -> 1 -> 0 -> 11 -> 15 -> 11 -> 15 -> 8 -> 4 -> 0 -> 1 -> 0 -> 13 -> 14 -> 15 -> 4 -> 0
+------------------------------------------------------------
+Restart again from certain state: 14
+step=25 | state=14 | action=RIGHT | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 25 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0 -> 14 -> 15 -> 5 -> 1 -> 0 -> 11 -> 15 -> 11 -> 15 -> 8 -> 4 -> 0 -> 1 -> 0 -> 13 -> 14 -> 15 -> 4 -> 0 -> 15
+------------------------------------------------------------
+Restart again from certain state: 10
+step=26 | state=10 | action=DOWN  | next=14 | reward=-1.0
+step=27 | state=14 | action=RIGHT | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 27 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0 -> 14 -> 15 -> 5 -> 1 -> 0 -> 11 -> 15 -> 11 -> 15 -> 8 -> 4 -> 0 -> 1 -> 0 -> 13 -> 14 -> 15 -> 4 -> 0 -> 15 -> 14 -> 15
+------------------------------------------------------------
+Restart again from certain state: 10
+step=28 | state=10 | action=DOWN  | next=14 | reward=-1.0
+step=29 | state=14 | action=RIGHT | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 29 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0 -> 14 -> 15 -> 5 -> 1 -> 0 -> 11 -> 15 -> 11 -> 15 -> 8 -> 4 -> 0 -> 1 -> 0 -> 13 -> 14 -> 15 -> 4 -> 0 -> 15 -> 14 -> 15 -> 14 -> 15
+------------------------------------------------------------
+Restart again from certain state: 10
+step=30 | state=10 | action=RIGHT | next=11 | reward=-1.0
+step=31 | state=11 | action=DOWN  | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 31 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0 -> 14 -> 15 -> 5 -> 1 -> 0 -> 11 -> 15 -> 11 -> 15 -> 8 -> 4 -> 0 -> 1 -> 0 -> 13 -> 14 -> 15 -> 4 -> 0 -> 15 -> 14 -> 15 -> 14 -> 15 -> 11 -> 15
+------------------------------------------------------------
+Restart again from certain state: 7
+step=32 | state= 7 | action=DOWN  | next=11 | reward=-1.0
+step=33 | state=11 | action=DOWN  | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 33 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0 -> 14 -> 15 -> 5 -> 1 -> 0 -> 11 -> 15 -> 11 -> 15 -> 8 -> 4 -> 0 -> 1 -> 0 -> 13 -> 14 -> 15 -> 4 -> 0 -> 15 -> 14 -> 15 -> 14 -> 15 -> 11 -> 15 -> 11 -> 15
+------------------------------------------------------------
+Restart again from certain state: 14
+step=34 | state=14 | action=RIGHT | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 34 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0 -> 14 -> 15 -> 5 -> 1 -> 0 -> 11 -> 15 -> 11 -> 15 -> 8 -> 4 -> 0 -> 1 -> 0 -> 13 -> 14 -> 15 -> 4 -> 0 -> 15 -> 14 -> 15 -> 14 -> 15 -> 11 -> 15 -> 11 -> 15 -> 15
+------------------------------------------------------------
+Restart again from certain state: 10
+step=35 | state=10 | action=RIGHT | next=11 | reward=-1.0
+step=36 | state=11 | action=DOWN  | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 36 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0 -> 14 -> 15 -> 5 -> 1 -> 0 -> 11 -> 15 -> 11 -> 15 -> 8 -> 4 -> 0 -> 1 -> 0 -> 13 -> 14 -> 15 -> 4 -> 0 -> 15 -> 14 -> 15 -> 14 -> 15 -> 11 -> 15 -> 11 -> 15 -> 15 -> 11 -> 15
+------------------------------------------------------------
+Restart again from certain state: 6
+step=37 | state= 6 | action=UP    | next= 2 | reward=-1.0
+step=38 | state= 2 | action=LEFT  | next= 1 | reward=-1.0
+step=39 | state= 1 | action=LEFT  | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 39 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0 -> 14 -> 15 -> 5 -> 1 -> 0 -> 11 -> 15 -> 11 -> 15 -> 8 -> 4 -> 0 -> 1 -> 0 -> 13 -> 14 -> 15 -> 4 -> 0 -> 15 -> 14 -> 15 -> 14 -> 15 -> 11 -> 15 -> 11 -> 15 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0
+------------------------------------------------------------
+Restart again from certain state: 10
+step=40 | state=10 | action=DOWN  | next=14 | reward=-1.0
+------------------------------------------------------------
+Episode stopped after 40 steps.
+Path: 9 -> 13 -> 14 -> 15 -> 4 -> 0 -> 14 -> 15 -> 5 -> 1 -> 0 -> 11 -> 15 -> 11 -> 15 -> 8 -> 4 -> 0 -> 1 -> 0 -> 13 -> 14 -> 15 -> 4 -> 0 -> 15 -> 14 -> 15 -> 14 -> 15 -> 11 -> 15 -> 11 -> 15 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0 -> 14
+------------------------------------------------------------
+
+Improving policy...
+
+============================================================
+POLICY IS STABLE
+============================================================
+
+Final policy demonstration...
+
+Playing policy from iteration 2 starting at state 5
+step=01 | state= 5 | action=LEFT  | next= 4 | reward=-1.0
+step=02 | state= 4 | action=UP    | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 2 steps.
+Path: 5 -> 4 -> 0
+------------------------------------------------------------
+Restart again from certain state: 13
+step=03 | state=13 | action=RIGHT | next=14 | reward=-1.0
+step=04 | state=14 | action=RIGHT | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 4 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15
+------------------------------------------------------------
+Restart again from certain state: 10
+step=05 | state=10 | action=RIGHT | next=11 | reward=-1.0
+step=06 | state=11 | action=DOWN  | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 6 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15 -> 11 -> 15
+------------------------------------------------------------
+Restart again from certain state: 6
+step=07 | state= 6 | action=UP    | next= 2 | reward=-1.0
+step=08 | state= 2 | action=LEFT  | next= 1 | reward=-1.0
+step=09 | state= 1 | action=LEFT  | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 9 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0
+------------------------------------------------------------
+Restart again from certain state: 5
+step=10 | state= 5 | action=LEFT  | next= 4 | reward=-1.0
+step=11 | state= 4 | action=UP    | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 11 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0 -> 4 -> 0
+------------------------------------------------------------
+Restart again from certain state: 11
+step=12 | state=11 | action=DOWN  | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 12 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0 -> 4 -> 0 -> 15
+------------------------------------------------------------
+Restart again from certain state: 5
+step=13 | state= 5 | action=UP    | next= 1 | reward=-1.0
+step=14 | state= 1 | action=LEFT  | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 14 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0 -> 4 -> 0 -> 15 -> 1 -> 0
+------------------------------------------------------------
+Restart again from certain state: 13
+step=15 | state=13 | action=RIGHT | next=14 | reward=-1.0
+step=16 | state=14 | action=RIGHT | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 16 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0 -> 4 -> 0 -> 15 -> 1 -> 0 -> 14 -> 15
+------------------------------------------------------------
+Restart again from certain state: 10
+step=17 | state=10 | action=RIGHT | next=11 | reward=-1.0
+step=18 | state=11 | action=DOWN  | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 18 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0 -> 4 -> 0 -> 15 -> 1 -> 0 -> 14 -> 15 -> 11 -> 15
+------------------------------------------------------------
+Restart again from certain state: 10
+step=19 | state=10 | action=RIGHT | next=11 | reward=-1.0
+step=20 | state=11 | action=DOWN  | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 20 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0 -> 4 -> 0 -> 15 -> 1 -> 0 -> 14 -> 15 -> 11 -> 15 -> 11 -> 15
+------------------------------------------------------------
+Restart again from certain state: 10
+step=21 | state=10 | action=DOWN  | next=14 | reward=-1.0
+step=22 | state=14 | action=RIGHT | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 22 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0 -> 4 -> 0 -> 15 -> 1 -> 0 -> 14 -> 15 -> 11 -> 15 -> 11 -> 15 -> 14 -> 15
+------------------------------------------------------------
+Restart again from certain state: 8
+step=23 | state= 8 | action=UP    | next= 4 | reward=-1.0
+step=24 | state= 4 | action=UP    | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 24 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0 -> 4 -> 0 -> 15 -> 1 -> 0 -> 14 -> 15 -> 11 -> 15 -> 11 -> 15 -> 14 -> 15 -> 4 -> 0
+------------------------------------------------------------
+Restart again from certain state: 7
+step=25 | state= 7 | action=DOWN  | next=11 | reward=-1.0
+step=26 | state=11 | action=DOWN  | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 26 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0 -> 4 -> 0 -> 15 -> 1 -> 0 -> 14 -> 15 -> 11 -> 15 -> 11 -> 15 -> 14 -> 15 -> 4 -> 0 -> 11 -> 15
+------------------------------------------------------------
+Restart again from certain state: 9
+step=27 | state= 9 | action=RIGHT | next=10 | reward=-1.0
+step=28 | state=10 | action=RIGHT | next=11 | reward=-1.0
+step=29 | state=11 | action=DOWN  | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 29 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0 -> 4 -> 0 -> 15 -> 1 -> 0 -> 14 -> 15 -> 11 -> 15 -> 11 -> 15 -> 14 -> 15 -> 4 -> 0 -> 11 -> 15 -> 10 -> 11 -> 15
+------------------------------------------------------------
+Restart again from certain state: 9
+step=30 | state= 9 | action=RIGHT | next=10 | reward=-1.0
+step=31 | state=10 | action=RIGHT | next=11 | reward=-1.0
+step=32 | state=11 | action=DOWN  | next=15 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 15
+Episode completed in 32 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0 -> 4 -> 0 -> 15 -> 1 -> 0 -> 14 -> 15 -> 11 -> 15 -> 11 -> 15 -> 14 -> 15 -> 4 -> 0 -> 11 -> 15 -> 10 -> 11 -> 15 -> 10 -> 11 -> 15
+------------------------------------------------------------
+Restart again from certain state: 12
+step=33 | state=12 | action=UP    | next= 8 | reward=-1.0
+step=34 | state= 8 | action=UP    | next= 4 | reward=-1.0
+step=35 | state= 4 | action=UP    | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 35 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0 -> 4 -> 0 -> 15 -> 1 -> 0 -> 14 -> 15 -> 11 -> 15 -> 11 -> 15 -> 14 -> 15 -> 4 -> 0 -> 11 -> 15 -> 10 -> 11 -> 15 -> 10 -> 11 -> 15 -> 8 -> 4 -> 0
+------------------------------------------------------------
+Restart again from certain state: 12
+step=36 | state=12 | action=UP    | next= 8 | reward=-1.0
+step=37 | state= 8 | action=UP    | next= 4 | reward=-1.0
+step=38 | state= 4 | action=UP    | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 38 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0 -> 4 -> 0 -> 15 -> 1 -> 0 -> 14 -> 15 -> 11 -> 15 -> 11 -> 15 -> 14 -> 15 -> 4 -> 0 -> 11 -> 15 -> 10 -> 11 -> 15 -> 10 -> 11 -> 15 -> 8 -> 4 -> 0 -> 8 -> 4 -> 0
+------------------------------------------------------------
+Restart again from certain state: 5
+step=39 | state= 5 | action=LEFT  | next= 4 | reward=-1.0
+step=40 | state= 4 | action=UP    | next= 0 | reward=-1.0
+------------------------------------------------------------
+GOAL REACHED: terminal state 0
+Episode completed in 40 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0 -> 4 -> 0 -> 15 -> 1 -> 0 -> 14 -> 15 -> 11 -> 15 -> 11 -> 15 -> 14 -> 15 -> 4 -> 0 -> 11 -> 15 -> 10 -> 11 -> 15 -> 10 -> 11 -> 15 -> 8 -> 4 -> 0 -> 8 -> 4 -> 0 -> 4 -> 0
+------------------------------------------------------------
+Restart again from certain state: 9
+------------------------------------------------------------
+Episode stopped after 40 steps.
+Path: 5 -> 4 -> 0 -> 14 -> 15 -> 11 -> 15 -> 2 -> 1 -> 0 -> 4 -> 0 -> 15 -> 1 -> 0 -> 14 -> 15 -> 11 -> 15 -> 11 -> 15 -> 14 -> 15 -> 4 -> 0 -> 11 -> 15 -> 10 -> 11 -> 15 -> 10 -> 11 -> 15 -> 8 -> 4 -> 0 -> 8 -> 4 -> 0 -> 4 -> 0
+------------------------------------------------------------
+
+Policy iteration finished.

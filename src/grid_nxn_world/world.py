@@ -165,3 +165,27 @@ class GridWorld:
     ) -> None:
         if cell_size <= 0:
             raise ValueError("grid_cell_size must be greater than 0.")
+
+    def grid_set_terminal_positions(
+        self,
+        positions: tuple[tuple[int, int], ...],
+    ) -> None:
+        for x, y in positions:
+            self._validate_grid_position(x, y)
+
+        self._paint.set_terminal_cells(positions)
+
+    def robot_trace_clear(self) -> None:
+        self._paint.robot_trace_clear()
+
+    def robot_trace_add(self) -> None:
+        self._paint.robot_trace_add(self.robot_position)
+
+    def render_load_goal_sound(
+        self,
+        path: str,
+    ) -> None:
+        self._paint.load_goal_sound(path)
+
+    def render_play_goal_sound(self) -> None:
+        self._paint.play_goal_sound()

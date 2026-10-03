@@ -1,6 +1,13 @@
 import pygame
 
-from grid_nxn_world.config import GRID_LINE_COLOR, HIGHLIGHT_COLOR, TEXT_COLOR
+from grid_nxn_world.config import (
+    GRID_LINE_COLOR,
+    HIGHLIGHT_COLOR,
+    ROBOT_TRACE_COLOR,
+    ROBOT_TRACE_POINT_RADIUS,
+    TERMINAL_CELL_COLOR,
+    TEXT_COLOR,
+)
 
 
 class Grid:
@@ -25,8 +32,25 @@ class Grid:
         self,
         surface: pygame.Surface,
         active_cell: tuple[int, int] | None = None,
+        terminal_cells: tuple[tuple[int, int], ...] = (),
+        robot_trace: tuple[tuple[int, int], ...] = (),
     ) -> None:
-        self._draw_active_cell(surface, active_cell)
+
+        self._draw_active_cell(
+            surface,
+            active_cell,
+        )
+
+        self._draw_terminal_cells(
+            surface,
+            terminal_cells,
+        )
+
+        self._draw_robot_trace(
+            surface,
+            robot_trace,
+        )
+
         self._draw_lines(surface)
         self._draw_coordinates(surface)
 
@@ -87,6 +111,79 @@ class Grid:
                         row * self._cell_size + 6,
                     ),
                 )
+
+    def _draw_terminal_cells(
+        self,
+        surface: pygame.Surface,
+        terminal_cells: tuple[tuple[int, int], ...],
+    ) -> None:
+        font = pygame.font.SysFont(
+            "arial",
+            max(16, self._cell_size // 5),
+            bold=True,
+        )
+
+        for x, y in terminal_cells:
+            rect = pygame.Rect(
+                x * self._cell_size,
+                y * self._cell_size,
+                self._cell_size,
+                self._cell_size,
+            )
+
+            # Terminal-cell background
+            pygame.draw.rect(
+                surface,
+                TERMINAL_CELL_COLOR,
+                rect,
+            )
+
+            # GOAL label
+            label = font.render(
+                "GOAL",
+                True,
+                TEXT_COLOR,
+            )
+
+            label_rect = label.get_rect(center=rect.center)
+
+            surface.blit(
+                label,
+                label_rect,
+            )
+
+    def _draw_robot_trace(
+        self,
+        surface: pygame.Surface,
+        robot_trace: tuple[tuple[int, int], ...],
+    ) -> None:
+        if not robot_trace:
+            return
+
+        points = [
+            (
+                x * self._cell_size + self._cell_size // 2,
+                y * self._cell_size + self._cell_size // 2,
+            )
+            for x, y in robot_trace
+        ]
+
+        if len(points) >= 2:
+            pygame.draw.lines(
+                surface,
+                ROBOT_TRACE_COLOR,
+                False,
+                points,
+                3,
+            )
+
+        for point in points:
+            pygame.draw.circle(
+                surface,
+                ROBOT_TRACE_COLOR,
+                point,
+                ROBOT_TRACE_POINT_RADIUS,
+            )
 
     def _get_font(self) -> pygame.font.Font:
         if self._font is None:

@@ -38,10 +38,15 @@ class GridWorld4x4:
     STEP_REWARD = -1.0
     TERMINAL_STATE_REWARD = 0.0
 
-    def __init__(self):
+    def __init__(self, terminal_states: frozenset[int] | None = None):
         self.states = tuple(range(self.STATES_CARDINALITY))
-        self.terminal_states = frozenset({0, 15})
         self.actions = tuple(Action)
+        self.terminal_states = (
+            terminal_states if terminal_states is not None else frozenset({0, 15})
+        )
+
+        for state in self.terminal_states:
+            self.validate_state(state)
 
     def transition(self, state: int, action: Action) -> int:
         """Execute transition in grid-env"""
