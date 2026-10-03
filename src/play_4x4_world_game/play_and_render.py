@@ -39,9 +39,9 @@ from play_4x4_world_game.utils import state_to_position
 
 MAX_EPISODE_STEPS = 40
 
-MOVE_DISPLAY_SECONDS = 0.9
-START_DISPLAY_SECONDS = 2
-END_DISPLAY_SECONDS = 2.0
+MOVE_DISPLAY_SECONDS = 0.45
+START_DISPLAY_SECONDS = 0.5
+END_DISPLAY_SECONDS = 1.0
 
 GAMMA = 1.0
 THETA = 1e-6
@@ -180,7 +180,11 @@ def play_episode(
     for step_number in range(1, MAX_EPISODE_STEPS + 1):
 
         if env.is_terminal(state):
-            break
+            print("-" * 50)
+            print(f"Episode Terminated: {state}")
+            state = get_random_start_state()
+            print(f"Restarting next episode: from state: {state}")
+            print("-" * 50)
 
         action = choose_action(
             env,
@@ -217,14 +221,13 @@ def play_episode(
         state = next_state
 
         if terminated:
-            print(f"Terminal state {state} reached " f"in {step_number} steps.")
+            print("-" * 50)
+            print(f"Episode Terminated: {state}")
+            state = get_random_start_state()
+            print(f"Restarting next episode: from state: {state}")
+            print("-" * 50)
 
-            return render_for(
-                world,
-                END_DISPLAY_SECONDS,
-            )
-
-    print(f"Episode stopped after " f"{MAX_EPISODE_STEPS} steps.")
+    print(f"Episode stopped after nth " f"{MAX_EPISODE_STEPS} steps.")
 
     return render_for(
         world,
