@@ -62,6 +62,10 @@ class GreedyPolicy(Policy):
         super().__init__(env)
         self._action_map = action_map  # give {state: possible better action set}
 
+    @property
+    def action_map(self):
+        return self._action_map
+
     def probability(self, state: int, action: Action) -> float:
         self._env.validate_state(state)
         self._env.validate_action(action)
