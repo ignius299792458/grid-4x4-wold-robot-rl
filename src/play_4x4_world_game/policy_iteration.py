@@ -5,6 +5,8 @@ Repeatedly:
     3. stop when policy becomes stable
 """
 
+from math import isclose
+
 from play_4x4_world_game.environment import GridWorld4x4
 from play_4x4_world_game.policy import EquiprobableRandomPolicy, GreedyPolicy, Policy
 from play_4x4_world_game.policy_evaluation import iterative_policy_evaluation
@@ -31,23 +33,34 @@ def policy_iteration(
         improved_policy = improve_greedy_policy(env, vpi_values, gamma)
 
         """ 3. check whether policy changed """
-        if _check_policies_equal(env, policy, improved_policy):
+        if check_policies_equal(env, policy, improved_policy):
             return improved_policy, vpi_values, iteration
 
         policy = improved_policy
 
 
-def _check_policies_equal(
-    env: GridWorld4x4, policy_a: Policy, policy_b: Policy
-) -> bool:
+def check_policies_equal(env: GridWorld4x4, policy_a: Policy, policy_b: Policy) -> bool:
 
     for state in env.states:
         if env.is_terminal(state):
             continue
 
         for action in env.actions:
-            if policy_a.probability(state, action) != policy_b.probability(
-                state, action
+            probability_a = policy_a.probability(
+                state,
+                action,
+            )
+
+            probability_b = policy_b.probability(
+                state,
+                action,
+            )
+
+            if not isclose(
+                probability_a,
+                probability_b,
+                rel_tol=1e-9,
+                abs_tol=1e-9,
             ):
                 return False
     return True
