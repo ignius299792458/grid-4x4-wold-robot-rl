@@ -51,12 +51,12 @@ class GridWorld4x4:
         if self.is_terminal(state):
             return state
 
-        x, y = state_to_position(state)
+        x, y = state_to_position(state, self.GRID_SIZE)
         next_x = x + action.dx
         next_y = y + action.dy
         if not self._is_valid_position(next_x, next_y):
             return state
-        return position_to_state(next_x, next_y)
+        return position_to_state(next_x, next_y, self.GRID_SIZE)
 
     def step(self, state: int, action: Action) -> tuple[int, float, bool]:
         """Execute one MDP transition, return: (next_state, reward, terminated)"""
