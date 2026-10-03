@@ -51,3 +51,11 @@ def _check_policies_equal(
             ):
                 return False
     return True
+
+
+# Check and test policy_iteration function
+if __name__ == "__main__":
+    iterated_improved_policy, vpi_values, iterations = policy_iteration(
+        env=GridWorld4x4()
+    )
+    print(f"{iterated_improved_policy=},\n{vpi_values=}\n{iterations=}")
